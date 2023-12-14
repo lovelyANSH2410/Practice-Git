@@ -6,3 +6,17 @@ console.log(items);
 items[0].style.fontWeight = 'bold';
 items[0].style.color = '#008000';
 //items.textContent.style.color = 'solid 3px #008000';
+
+
+//using getelementbyclassname
+
+var item = document.getElementsByClassName('list-group-item');
+console.log(item);
+item[2].style.backgroundColor = 'green';
+
+//error
+//item.style.fontWeight = 'bold';
+
+for(var i = 0; i<item.length; i++){
+    item[i].style.fontWeight = 'bold';
+}
