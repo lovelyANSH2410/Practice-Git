@@ -35,8 +35,56 @@
 
 //query selector
 
-var secondItem = document.querySelector('.list-group-item:nth-child(2)');
-secondItem.style.backgroundColor = 'green';
+// var secondItem = document.querySelector('.list-group-item:nth-child(2)');
+// secondItem.style.backgroundColor = 'green';
 
-var thirdItem = document.querySelector('.list-group-item:nth-child(3)');
-thirdItem.style.color = 'white';
+// var thirdItem = document.querySelector('.list-group-item:nth-child(3)');
+// thirdItem.style.color = 'white';
+
+
+//query selector all
+
+
+
+
+
+// traversing the dom
+
+var itemList = document.querySelector('#items');
+//parent node
+// console.log(itemList.parentNode);
+// itemList.parentNode.style.backgroundColor = '#f4f4f4';
+// console.log(itemList.parentNode.parentNode);
+
+//parenet element
+// console.log(itemList.parentElement);
+// itemList.parentElement.style.backgroundColor = '#f4f4f4';
+// console.log(itemList.parentElement.parentNode);
+
+//child nodes
+// console.log(itemList.childNodes);
+
+//children
+// console.log(itemList.children);
+// console.log(itemList.children[1]);
+// itemList.children[1].style.backgroundColor = 'yellow';
+
+// //first child
+// console.log(itemList.firstChild);
+
+// //first element child
+
+// console.log(itemList.firstElementChild);
+// itemList.firstElementChild.textContent = 'Hellow';
+
+
+//last child
+// console.log(itemList.lastChild);
+
+// //last element child
+
+// console.log(itemList.lastElementChild);
+// itemList.lastElementChild.textContent = 'Hellow';
+
+
+//siblings
