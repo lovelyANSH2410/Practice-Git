@@ -1,90 +1,71 @@
-// var header = document.getElementById('main-header');
-// header.style.borderBottom = 'solid 3px #000';
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
+var filter = document.getElementById('filter');
 
-// var items = document.getElementsByClassName('title');
-// console.log(items);
-// items[0].style.fontWeight = 'bold';
-// items[0].style.color = '#008000';
-// //items.textContent.style.color = 'solid 3px #008000';
+//form submit event
+form.addEventListener('submit', addItem);
+// Delete event
+itemList.addEventListener('click', removeItem);
+// filter event
+filter.addEventListener('keyup', filterItems);
 
+// Add item
+function addItem(e){
+    e.preventDefault();
 
-//using getelementbyclassname
+    //Get input value
+    var newItem = document.getElementById('item').value;
 
-// var item = document.getElementsByClassName('list-group-item');
-// console.log(item);
-// item[2].style.backgroundColor = 'green';
+    //create new li element
+    var li = document.createElement('li');
 
-// //error
-// //item.style.fontWeight = 'bold';
+    //add class
+    li.className = 'list-group-item';
 
-// for(var i = 0; i<item.length; i++){
-//     item[i].style.fontWeight = 'bold';
-// }
+    //add text node with input value
+    li.appendChild(document.createTextNode(newItem));
 
-// //get element by tag name
+    //create delete button
+    var deleteBtn = document.createElement('button');
 
-// var li = document.getElementsByTagName('li');
-// li[2].style.backgroundColor = 'green';
+    //add classes to delete button
+    deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
 
-// error
-// item.style.fontWeight = 'bold';
+    //append text node
+    deleteBtn.appendChild(document.createTextNode('X'));
 
-// for(var i = 0; i<li.length; i++){
-//     li[i].style.fontWeight = 'bold';
-// }
+    // append button to li
+    li.appendChild(deleteBtn);
 
-//query selector
+    // append li to list
+    itemList.appendChild(li);
+}
 
-// var secondItem = document.querySelector('.list-group-item:nth-child(2)');
-// secondItem.style.backgroundColor = 'green';
+//remove item
+function removeItem(e){
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you sure?')){
+            var li = e.target.parentElement;
+            itemList.removeChild(li);
+        }
+    }
+}
 
-// var thirdItem = document.querySelector('.list-group-item:nth-child(3)');
-// thirdItem.style.color = 'white';
+//filter item
 
-
-//query selector all
-
-
-
-
-
-// traversing the dom
-
-var itemList = document.querySelector('#items');
-//parent node
-// console.log(itemList.parentNode);
-// itemList.parentNode.style.backgroundColor = '#f4f4f4';
-// console.log(itemList.parentNode.parentNode);
-
-//parenet element
-// console.log(itemList.parentElement);
-// itemList.parentElement.style.backgroundColor = '#f4f4f4';
-// console.log(itemList.parentElement.parentNode);
-
-//child nodes
-// console.log(itemList.childNodes);
-
-//children
-// console.log(itemList.children);
-// console.log(itemList.children[1]);
-// itemList.children[1].style.backgroundColor = 'yellow';
-
-// //first child
-// console.log(itemList.firstChild);
-
-// //first element child
-
-// console.log(itemList.firstElementChild);
-// itemList.firstElementChild.textContent = 'Hellow';
-
-
-//last child
-// console.log(itemList.lastChild);
-
-// //last element child
-
-// console.log(itemList.lastElementChild);
-// itemList.lastElementChild.textContent = 'Hellow';
-
-
-//siblings
+function filterItems(e){
+    //convert text to lowercase
+    var text = e.target.value.toLowerCase();
+    //get list
+    var items = itemList.getElementsByTagName('li');
+    //convert to an array
+    Array.from(items).forEach(function(item){
+        var itemName = item.firstChild.textContent;
+        if(itemName.toLowerCase().indexOf(text) != -1){
+            item.style.display = 'block';
+        }
+        else{
+            item.style.display = 'none';
+        }
+    });
+}
